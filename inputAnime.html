@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>inputAnime</title>
+        <style>
+            div {text-align: center;}
+        </style>
+        <script>
+
+            function inpu()
+            {
+                
+            }
+            function start()
+            {
+                document.getElementById("button").addEventListener("click",inpu,false);
+            }
+            window.addEventListener("load",start.false);
+        </script>
+    </head>
+    <body style="background-color: #ffc0cb;">
+        <div style="text-align: center;font-size: 300%;">
+            請輸入動畫並且評分!
+        </div>
+        <div style="text-align: center;">
+            <label>
+             動畫名稱:   <input type="text" id="name" required>
+             請打分:
+             <select id="rank">
+                 <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+                 <option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+             </select>
+             <input type="button" id="button" value="輸入">
+            </label>
+        </div>
+    </body>
+</html>
