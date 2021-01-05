@@ -7,16 +7,29 @@
             div {text-align: center;}
         </style>
         <script>
-
+                var request = new XMLHttpRequest();
+                var url1="https://api.bgm.tv/search/subject/";
+                var url2="?type=2&responseGroup=large&start=0&max_results=25";
             function inpu()
             {
-                
+                var anime=document.getElementById("AnimeName").value;
+                window.alert(anime);
+                request.open("GET",url1+anime+url2);
+                window.alert(url1+anime+url2);
+                request.onload = function ()
+                {
+                    window.alert("onload")
+                    var data=JSON.parse(this.response);
+                    window.alert(data.result);
+                }
+                request.send();
             }
+
             function start()
             {
-                document.getElementById("button").addEventListener("click",inpu,false);
+                document.getElementById("button").addEventListener("click",inpu,false);                
             }
-            window.addEventListener("load",start.false);
+            window.addEventListener("load",start,false);
         </script>
     </head>
     <body style="background-color: #ffc0cb;">
@@ -24,13 +37,15 @@
             請輸入動畫並且評分!
         </div>
         <div style="text-align: center;">
+        <form>
             <label>
-             動畫名稱:   <input type="text" id="name" required>
+             動畫名稱:   <input type="text" id="AnimeName" required>
              請打分:
              <select id="rank">
                  <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
                  <option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
              </select>
+        </form>
              <input type="button" id="button" value="輸入">
             </label>
         </div>
