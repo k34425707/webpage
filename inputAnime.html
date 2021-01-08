@@ -108,7 +108,7 @@
                 {
                     data=JSON.parse(this.response);
                     console.log(data);
-                    console.log("getJSON")
+                    console.log("getJSON");
                     change_word_style();
                 }
                 request.send();
@@ -120,6 +120,32 @@
                 localStorage.removeItem(word);
                 print_select_list();
             }
+
+            function get_recommend()
+            {
+                var userList={};
+                var len=localStorage.length;
+                for(var i=parseInt(0);i<len;i++)
+                {
+                    var x=JSON.parse(localStorage.getItem(localStorage.key(i)));
+                    console.log(x);
+                    userList[parseInt(x.id)]=parseInt(x.score);
+                } 
+                var test={1:8,840:10,203526:9,214265:10,260467:7,280837:7 };                
+                console.log(userList);  
+                        $.ajax({
+                        method: "POST",
+                        url: "https://cors-anywhere.herokuapp.com/http://webdesignprojecttest.great-site.net/response.php",
+                        data: JSON.stringify(test),
+                        // dataType: "JSON",
+                        success: function(res) 
+                        {
+                            console.log(res);
+                        }
+                        }).done(function(msg){
+                            console.log("Ok");
+                        });
+            }         
 
             function print_select_list()
             {  
@@ -148,6 +174,8 @@
                     console.log(key);
                     localStorage.removeItem(key);   
                     print_select_list();
+                    get_recommend()
+
                 })     
             }
             
@@ -160,6 +188,7 @@
                 work["score"]=$("#rank").val();
                 localStorage.setItem(name_tradition_list[i],JSON.stringify(work));
                 print_select_list();
+                get_recommend();    
                 console.log(searchResult[i]);   
             }
 
