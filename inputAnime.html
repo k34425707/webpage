@@ -68,7 +68,8 @@
                 var msg="";
                 for(var i=parseInt(0);i<n &&i<10;i++)
                 {
-                    msg+=" <label><input type='radio' name='select_anime' value='"+i+"' required>"+name_simple_list[i]+"</label><br>";
+		     if(name_simple_list[i]!="")	
+                    	msg+=" <label><input type='radio' name='select_anime' value='"+i+"' required>"+name_simple_list[i]+"</label><br>";
                 }
                 console.log("print");
                 document.getElementById("searchlist").innerHTML=msg;
