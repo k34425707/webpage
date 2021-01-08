@@ -57,8 +57,7 @@
                 translate.open("GET","https://cors-anywhere.herokuapp.com/https://api.zhconvert.org/convert?converter=Simplified&text="+lastword_tradition+"&prettify=1");
                 translate.onload=function()
                 {
-                    var reword=this.response;
-                    reword=JSON.parse(reword);
+                    var reword=JSON.parse(his.response);
                     lastword_simple=(reword.data.text);
                     console.log("traTOsimple");
                     inpu();
@@ -94,8 +93,9 @@
             function change_word_style()//從API拿到回傳東西後調整回傳清單   
             {
                 searchResult=data.list;
-                if(n=searchResult.length);
-                    for(var i=parseInt(0);i<n &&i<10;i++)
+                n=searchResult.length;
+                for(var i=parseInt(0);i<n &&i<10;i++)
+                    if(searchResult[i].name_cn!="")
                         name_simple_list[i]=searchResult[i].name_cn;
                 console.log("readyTOtrastra");
                 transTotradition()
