@@ -28,42 +28,27 @@
             var lastword_tradition="";
             var data;//API回傳的物件
             var name_simple_list=[];//API回傳的簡體字動畫清單
-            var name_tradition_list=[]//將簡體字清單改成繁體字清單
             var n;
             var searchResult;//API回傳物件的list
             
-            
-            function transTotradition()
-            {
-               
-                console.log(name_simple_list);
-                var name_simple_string=name_simple_list.join("/");
-                    translate.open("GET","https://cors-anywhere.herokuapp.com/https://api.zhconvert.org/convert?converter=Traditional&text="+name_simple_string+"&prettify=1");
-                    translate.onload=function()
-                    {
-                        var reword=this.response;
-                        reword=JSON.parse(reword);
-                        name_tradition_list=reword.data.text.split("/");
-                        console.log(name_tradition_list);  
-                        console.log("time");
-                        print_search_list();            
-                    }
-                    translate.send()
-                
-            }
 
             function transTosimple()//將輸入的繁體轉成簡體後丟給API
             {
+                console.log("ready to open");
                 translate.open("GET","https://cors-anywhere.herokuapp.com/https://api.zhconvert.org/convert?converter=Simplified&text="+lastword_tradition+"&prettify=1");
+                console.log("just open");
                 translate.onload=function()
                 {
-                    var reword=JSON.parse(his.response);
+                    console.log("just send");
+                    var reword=this.response;
+                    reword=JSON.parse(reword);
                     lastword_simple=(reword.data.text);
-                    console.log("traTOsimple");
+                    console.log("endtrans");
                     inpu();
                 }
-                translate.send()
-               
+                console.log("ready to send");
+                translate.send();
+            
             }
             function change()//如果輸入欄位的內容改變觸發
             {
@@ -84,13 +69,13 @@
                 var msg="";
                 for(var i=parseInt(0);i<n &&i<10;i++)
                 {
-                    msg+=" <label><input type='radio' name='select_anime' value='"+i+"' required>"+name_tradition_list[i]+"</label><br>";
+                    msg+=" <label><input type='radio' name='select_anime' value='"+i+"' required>"+name_simple_list[i]+"</label><br>";
                 }
                 console.log("print");
                 document.getElementById("searchlist").innerHTML=msg;
             }
             
-            function change_word_style()//從API拿到回傳東西後調整回傳清單   
+            function sort_data()//從API拿到回傳東西後調整回傳清單   
             {
                 searchResult=data.list;
                 n=searchResult.length;
@@ -98,7 +83,7 @@
                     if(searchResult[i].name_cn!="")
                         name_simple_list[i]=searchResult[i].name_cn;
                 console.log("readyTOtrastra");
-                transTotradition()
+                print_search_list();
             }
 
             function inpu()
@@ -109,7 +94,7 @@
                     data=JSON.parse(this.response);
                     console.log(data);
                     console.log("getJSON");
-                    change_word_style();
+                    sort_data();
                 }
                 request.send();
             }
@@ -145,7 +130,7 @@
                         }).done(function(msg){
                             console.log("Ok");
                         });
-            }         
+            }    
 
             function print_select_list()
             {  
@@ -184,9 +169,9 @@
                 var work={};
                 var i= $("[name='select_anime']:checked").val();
                 work["id"]=searchResult[i].id;
-                work["name"]=name_tradition_list[i];
+                work["name"]=name_simple_list[i];
                 work["score"]=$("#rank").val();
-                localStorage.setItem(name_tradition_list[i],JSON.stringify(work));
+                localStorage.setItem(name_simple_list[i],JSON.stringify(work));
                 print_select_list();
                 get_recommend();    
                 console.log(searchResult[i]);   
