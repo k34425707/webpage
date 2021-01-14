@@ -66,9 +66,12 @@
             function print_search_list()
             {
                 var msg="";
+                n=name_simple_list.length;
+                console.log(name_simple_list);
                 for(var i=parseInt(0);i<n &&i<10;i++)
                 {
-                    msg+=" <label><input type='radio' name='select_anime' value='"+i+"' required>"+name_simple_list[i]+"</label><br>";
+                    
+                        msg+=" <label><input type='radio' name='select_anime' value='"+i+"' required>"+name_simple_list[i]+"</label><br>";
                 }
                 console.log("print");
                 document.getElementById("searchlist").innerHTML=msg;
@@ -76,11 +79,16 @@
             
             function sort_data()//從API拿到回傳東西後調整回傳清單   
             {
+                name_simple_list=[];
                 searchResult=data.list;
                 n=searchResult.length;
                 for(var i=parseInt(0);i<n &&i<10;i++)
+                {
                     if(searchResult[i].name_cn!="")
-                        name_simple_list[i]=searchResult[i].name_cn;
+                    {
+                        name_simple_list[i]=searchResult[i].name_cn;  
+                    }
+                }
                 console.log("readyTOtrastra");
                 print_search_list();
             }
