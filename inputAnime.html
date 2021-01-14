@@ -40,8 +40,7 @@
                 translate.onload=function()
                 {
                     console.log("just send");
-                    var reword=this.response;
-                    reword=JSON.parse(reword);
+                    var reword=JSON.parse(this.response);
                     lastword_simple=(reword.data.text);
                     console.log("endtrans");
                     inpu();
