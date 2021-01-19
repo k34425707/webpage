@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="icon" href="favicon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+        <meta charset="utf-8">
+        <title>アニメイプル-動畫推薦</title>
+        <style>
+            .welcom  { font-size: 600%;
+                   width: 100%;
+                   height: 350px;
+                   line-height: 200px;
+                   text-align: center;}
+            body {
+                background-image: url("maple.jpg");
+                /* background-image: url("https://d2gbv1dxinjqfv.cloudfront.net/2019/07/2019hokurikumomiji1.jpg"); */
+                background-size: cover;
+            }
+            .word {
+                font-size:300%;
+                /* position: absolute; */
+                /* margin-top: 20px;
+                margin-left: 70px; */
+            }
+            .ppt {
+                position: absolute;
+                bottom: 0;
+                right: 0;
+            }
+        </style>
+        <script src="jquery-3.5.1.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $("body").hide();
+                $("body").fadeIn(2000);
+            });
+        </script>    
+</head>
+    <body>
+        <a target="_blank" href="AniMaple-動畫推薦.pptx"><img src="ppt.png" class="ppt" width="200px"></a>
+        <!-- <a target="_blank" href="AniMaple-動畫推薦.pptx"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a0/.pptx_icon_%282019%29.svg" class="ppt" width="200px"></a> -->
+        <div class="welcom" style="color: azure;">Welcome to <br>ア二メイプル</div>
+        <div style="text-align: center; width: 100%;" >
+            <a href="inputAnime3.html"> <div id="gogo" style="width: 20%;background-color: skyblue;height: 100px;margin:0px auto;">
+                 <span class="word">推薦去!</span>   
+            </div></a>
+        </div>
+    </body>
+</html>
